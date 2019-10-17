@@ -12,6 +12,20 @@ package Controlador;
 public class Animal {
 
     /**
+     * @return the SEXO
+     */
+    public String getSEXO() {
+        return SEXO;
+    }
+
+    /**
+     * @param SEXO the SEXO to set
+     */
+    public void setSEXO(String SEXO) {
+        this.SEXO = SEXO;
+    }
+
+    /**
      * @return the ID_ANIMAL
      */
     public String getID_ANIMAL() {
@@ -280,4 +294,5 @@ private String UBICACION;
 private float PRECIO_COMPRA;
 private float PRECIO_VENTA;
 private String ESTADO;
+private String SEXO;
 }
