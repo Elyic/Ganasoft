@@ -16,8 +16,7 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class MetodosCarne {
-    
-    private Modelo.Conexion conexion = new Modelo.Conexion();
+     private Modelo.Conexion conexion = new Modelo.Conexion();
     
     
     //Este metodo llena el ingreso de leche
