@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Controlador.Animal;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -82,30 +83,75 @@ public boolean CargarMadres(DefaultComboBoxModel modeloCombo){
          return v;
      }
 //Metodo que inserta los datos en la base
-public boolean IngresoPersona (String CUI, String PNombre, String SNombre, String TNombre, String ApePaterno, String ApeMaterno,int depto,int muni,int carrera, int genero, String EstadoC, String NAC)
+public boolean IngresoAnimal (Animal Animal)
     {
         boolean v = false;
         Connection conecta = conexion.getConexion();
-        String ruta = System.getProperty("user.dir")+"/test.jpg";
+        String ruta = Animal.getFOTO();
          if (conecta!=null) {
              try {
-                 String SQL = "insert into Persona(CUI,PRIMER_NOMBRE,SEGUNDO_NOMBRE,TERCER_NOMBRE,APELLDIO_PATERNO,APELLIDO_MATERNO,ID_DEPARTAMENTO,ID_MUNICIPIO,ID_GENERO,ID_CARRERA,NACIONALIDAD,ESTADO_CIVIL,FOTO) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                 String SQL = "INSERT INTO [dbo].[ANIMAL]\n" +
+"           ([ID_ANIMAL]\n" +
+"           ,[DESCRIPCION]\n" +
+"           ,[RAZA]\n" +
+"           ,[TIPO]\n" +
+"           ,[FECHA_NACIMIENTO]\n" +
+"           ,[EDAD]\n" +
+"           ,[NO_LOTE]\n" +
+"           ,[PROCEDENCIA]\n" +
+"           ,[CATEGORIA]\n" +
+"           ,[NO_HIJOS]\n" +
+"           ,[PESO]\n" +
+"           ,[PADRE]\n" +
+"           ,[MADRE]\n" +
+"           ,[UBICACION]\n" +
+"           ,[PRECIO_COMPRA]\n" +
+"           ,[PRECIO_VENTA]\n" +
+"           ,[ESTADO]\n" +
+"           ,[SEXO]"+ 
+"           ,[FOTO])\n" +
+"     VALUES\n" +
+"           (?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?\n" +
+"           ,?   )";
                  PreparedStatement preparedStmt = conecta.prepareStatement(SQL);
                  File image = new File(ruta);
                  FileInputStream fis = new FileInputStream(image);
-                 preparedStmt.setString(1, CUI);
-                 preparedStmt.setString(2, PNombre);
-                 preparedStmt.setString(3, SNombre);
-                 preparedStmt.setString(4, TNombre);
-                 preparedStmt.setString(5, ApePaterno);
-                 preparedStmt.setString(6, ApeMaterno);
-                 preparedStmt.setInt(7, depto);
-                 preparedStmt.setInt(8, muni);
-                 preparedStmt.setInt(9, genero);
-                 preparedStmt.setInt(10, carrera);
-                 preparedStmt.setString(11, NAC);
-                 preparedStmt.setString(12, EstadoC);
-                 preparedStmt.setBinaryStream(13, fis, (int) image.length());
+                 preparedStmt.setString(1, Animal.getID_ANIMAL());
+                 preparedStmt.setString(2, Animal.getDESCRIPCION());
+                 preparedStmt.setInt(3, Animal.getRAZA());
+                 preparedStmt.setString(4, Animal.getTIPO());
+                 preparedStmt.setString(5, Animal.getFECHA_NACIMIENTO());
+                 preparedStmt.setString(6, Animal.getEDAD());
+                 preparedStmt.setString(7, Animal.getNO_LOTE());
+                 preparedStmt.setString(8, Animal.getPROCEDENCIA());
+                 preparedStmt.setInt(9, Animal.getCATEGORIA());
+                 preparedStmt.setInt(10, Animal.getNO_HIJOS());
+                 preparedStmt.setFloat(11, Animal.getPESO());
+                 preparedStmt.setString(12, Animal.getPADRE());
+                 preparedStmt.setString(13, Animal.getMADRE());
+                 preparedStmt.setString(14, Animal.getUBICACION());
+                 preparedStmt.setFloat(15, Animal.getPRECIO_COMPRA());
+                 preparedStmt.setFloat(16, Animal.getPRECIO_VENTA());
+                 preparedStmt.setString(17, Animal.getESTADO());
+                 preparedStmt.setString(18, Animal.getSEXO());
+                 preparedStmt.setBinaryStream(19, fis, (int) image.length());
                  preparedStmt.execute();
                  v = true;
              } catch (SQLException ex) {
@@ -121,5 +167,34 @@ public boolean IngresoPersona (String CUI, String PNombre, String SNombre, Strin
              }
          }
          return v;
+    }
+
+    public String ConsultarID(String Busqueda){
+        boolean v=false;
+        String ID ="";
+        Connection conecta = conexion.getConexion();
+        if (conecta!=null) {
+            try {
+                String SQL="SELECT ID_ANIMAL FROM ANIMAL WHERE ID_ANIMAL+' - '+DESCRIPCION = ?";
+                PreparedStatement consulta = conecta.prepareStatement(SQL);
+                consulta.setString(1, Busqueda);
+                ResultSet resultado = consulta.executeQuery();
+                while (resultado.next()) { //Es mas correcto poner el next en el while, te hace lo mismo que tenias en tu antiguo codigo pero en menos lineas y mas limpio
+                    ID = resultado.getString("ID_ANIMAL");
+                    v=true;
+                }
+                conecta.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            try {
+                conecta.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return ID;
     }
 }

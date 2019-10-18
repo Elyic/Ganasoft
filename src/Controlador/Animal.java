@@ -12,6 +12,34 @@ package Controlador;
 public class Animal {
 
     /**
+     * @return the RAZA
+     */
+    public int getRAZA() {
+        return RAZA;
+    }
+
+    /**
+     * @param RAZA the RAZA to set
+     */
+    public void setRAZA(int RAZA) {
+        this.RAZA = RAZA;
+    }
+
+    /**
+     * @return the FOTO
+     */
+    public String getFOTO() {
+        return FOTO;
+    }
+
+    /**
+     * @param FOTO the FOTO to set
+     */
+    public void setFOTO(String FOTO) {
+        this.FOTO = FOTO;
+    }
+
+    /**
      * @return the SEXO
      */
     public String getSEXO() {
@@ -53,19 +81,6 @@ public class Animal {
         this.DESCRIPCION = DESCRIPCION;
     }
 
-    /**
-     * @return the RAZA
-     */
-    public String getRAZA() {
-        return RAZA;
-    }
-
-    /**
-     * @param RAZA the RAZA to set
-     */
-    public void setRAZA(String RAZA) {
-        this.RAZA = RAZA;
-    }
 
     /**
      * @return the TIPO
@@ -140,14 +155,14 @@ public class Animal {
     /**
      * @return the CATEGORIA
      */
-    public String getCATEGORIA() {
+    public int getCATEGORIA() {
         return CATEGORIA;
     }
 
     /**
      * @param CATEGORIA the CATEGORIA to set
      */
-    public void setCATEGORIA(String CATEGORIA) {
+    public void setCATEGORIA(int CATEGORIA) {
         this.CATEGORIA = CATEGORIA;
     }
 
@@ -278,13 +293,13 @@ public class Animal {
     }
 private String ID_ANIMAL;
 private String DESCRIPCION;
-private String RAZA;
+private int RAZA;
 private String TIPO;
 private String FECHA_NACIMIENTO;
 private String EDAD;
 private String NO_LOTE;
 private String PROCEDENCIA;
-private String CATEGORIA;
+private int CATEGORIA;
 private int NO_HIJOS;
 private float PESO;
 private String PADRE;
@@ -295,4 +310,5 @@ private float PRECIO_COMPRA;
 private float PRECIO_VENTA;
 private String ESTADO;
 private String SEXO;
+private String FOTO;
 }
