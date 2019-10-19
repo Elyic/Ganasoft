@@ -10,7 +10,7 @@ public class Conexion
  public Conexion() {
   try {
    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-   con = DriverManager.getConnection("jdbc:sqlserver://ganasoft.cocqfacvxj99.us-east-2.rds.amazonaws.com:1433;databaseName=GANASOFT","admin","umg123456");
+   con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=GANASOFT","sa","123");
    //jdbc:sqlserver://localhost:1433;databaseName=db_proyecto [sa on dbo]
   
   } 

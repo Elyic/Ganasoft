@@ -21,6 +21,8 @@ public class RegistroAnimal extends javax.swing.JFrame {
     /**
      * Creates new form RegistroAnimal
      */
+    File fichero;
+    boolean foto = false;
     public RegistroAnimal() {
         initComponents();
         CargarRaza();
@@ -308,17 +310,20 @@ public class RegistroAnimal extends javax.swing.JFrame {
         Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
         Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
         String fnacim = "";
-        File fichero = null;
         if(NoRegistro.getText().isEmpty() || NoLote.getText().isEmpty() || FechaNac.getDate().toString().isEmpty()
            || Procedencia.getText().isEmpty() ){
             
         }else{
+            if(MA.VerificarID(NoRegistro.getText())){
+                JOptionPane.showMessageDialog(null, "El No de Registro "+NoRegistro.getText()+" ya esta en uso!!!");
+            }else{
             Animal.setID_ANIMAL(NoRegistro.getText());
             Animal.setNO_LOTE(NoLote.getText());
         try {
         Date date = FechaNac.getDate();
         String formato = FechaNac.getDateFormatString();
-        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            System.out.println(formato);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         fnacim = String.valueOf(sdf.format(date));
         System.out.println(fnacim);
         } catch (Exception e) {
@@ -326,32 +331,50 @@ public class RegistroAnimal extends javax.swing.JFrame {
 }
                     Animal.setFECHA_NACIMIENTO(fnacim);
             Animal.setPROCEDENCIA(Procedencia.getText());
-                  JFileChooser fileChooser = new JFileChooser();
-int seleccion = fileChooser.showOpenDialog(Foto);
-if (seleccion == fileChooser.APPROVE_OPTION)
-{
-    fichero = fileChooser.getSelectedFile();
-    System.out.println(fichero.getAbsolutePath());
-}
+//                  JFileChooser fileChooser = new JFileChooser();
+//int seleccion = fileChooser.showOpenDialog(Foto);
+//if (seleccion == fileChooser.APPROVE_OPTION)
+//{
+//    fichero = fileChooser.getSelectedFile();
+//    System.out.println(fichero.getAbsolutePath());
+//}            try{
+        if(foto){
+                          if(fichero.getAbsolutePath() != null){
             Animal.setFOTO(fichero.getAbsolutePath());
-            Animal.setPADRE(MA.ConsultarID((String) ComboPadre.getSelectedItem()));
+                }  
+        }
+            if(!"".equals((String) ComboPadre.getSelectedItem())){
+                Animal.setPADRE(MA.ConsultarID((String) ComboPadre.getSelectedItem()));
+            }
+            if(!"".equals((String) ComboMadre.getSelectedItem())){ 
             Animal.setMADRE(MA.ConsultarID((String) ComboMadre.getSelectedItem()));
+            }
             Animal.setTIPO(Tipo.getText());
-            Animal.setNO_HIJOS(Integer.parseInt(NoPartos.getText()));
+            if(!NoPartos.getText().isEmpty()){
+             Animal.setNO_HIJOS(Integer.parseInt(NoPartos.getText()));
+            }
+            if(!Peso.getText().isEmpty()){
             Animal.setPESO(Float.parseFloat(Peso.getText()));
+            }
+
             Animal.setRAZA(MR.ConsultarID((String) ComboRaza.getSelectedItem()));
             Animal.setSEXO((String) ComboSexo.getSelectedItem());
             Animal.setCATEGORIA(MC.ConsultarID((String) ComboCategoria.getSelectedItem()));
-            Animal.setPRECIO_COMPRA(Float.parseFloat(PrecioCompra.getText()));
-            Animal.setPRECIO_VENTA(Float.parseFloat(PrecioVenta.getText()));
+            if(!PrecioCompra.getText().isEmpty()){
+            Animal.setPRECIO_COMPRA(Float.parseFloat(PrecioCompra.getText()));    
+            }
+            if(!PrecioVenta.getText().isEmpty()){
+                Animal.setPRECIO_VENTA(Float.parseFloat(PrecioVenta.getText()));
+            }
+            
             Animal.setUBICACION(Ubicacion.getText());
             Animal.setDESCRIPCION(Descripcion.getText());
             Animal.setESTADO((String) ComboEstado.getSelectedItem());
-            
             if(MA.IngresoAnimal(Animal)){
                 JOptionPane.showMessageDialog(null, "Ingresado correctamente!!!!");
             }else{
                 JOptionPane.showMessageDialog(null, "Ocurrio un error al ingresar!!!!");
+            }    
             }
         }
 
@@ -363,8 +386,9 @@ if (seleccion == fileChooser.APPROVE_OPTION)
 int seleccion = fileChooser.showOpenDialog(Foto);
 if (seleccion == fileChooser.APPROVE_OPTION)
 {
-   File fichero = fileChooser.getSelectedFile();
+    fichero = fileChooser.getSelectedFile();
     System.out.println(fichero.getAbsolutePath());
+    foto = true;
 }
     }//GEN-LAST:event_FotoActionPerformed
     public void CargarRaza(){
