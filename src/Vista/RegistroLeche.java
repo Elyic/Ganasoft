@@ -34,6 +34,7 @@ public class RegistroLeche extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -42,136 +43,155 @@ public class RegistroLeche extends javax.swing.JFrame {
         txtCantProducida = new javax.swing.JTextField();
         txtObservaciones = new javax.swing.JTextField();
         txtFechaRev = new com.toedter.calendar.JDateChooser();
-        btnGuardar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro de Leche");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Id Animal:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 70, 27));
 
         jLabel2.setText("Calidad: ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 54, 27));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("ORDEÑO");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 170, -1));
 
         jLabel3.setText("Cantidad Producida: ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 120, 27));
 
         jLabel4.setText("Fecha Revisión: ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 113, 27));
 
         jLabel5.setText("Observasiones:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 113, 27));
+        getContentPane().add(txtIdAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 209, -1));
+        getContentPane().add(txtCalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 209, -1));
+        getContentPane().add(txtCantProducida, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 156, -1));
+        getContentPane().add(txtObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 180, -1));
+        getContentPane().add(txtFechaRev, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 160, -1));
 
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vaca64.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar-documento-icono-7840-32.png"))); // NOI18N
+        jButton2.setText("Guardar");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 130, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(txtCantProducida, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtFechaRev, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(btnGuardar)))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(txtCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(txtCantProducida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(txtFechaRev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(btnGuardar)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
+        jButton1.setText("Volver");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 130, 40));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 440, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if(txtIdAnimal.getText().isEmpty() || txtCalidad.getText().isEmpty() ||
-                txtCantProducida.getText().isEmpty() || txtObservaciones.getText().isEmpty())
-        {
-          JOptionPane.showMessageDialog(null, "Debe de ingresar todos los datos del registro.");
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Controlador.Animal Animal = new Controlador.Animal();
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
+        Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
+        String fnacim = "";
+        if(NoRegistro.getText().isEmpty() || NoLote.getText().isEmpty() || FechaNac.getDate().toString().isEmpty()
+            || Procedencia.getText().isEmpty() ){
+
         }else{
-            Modelo.MetodosLeche leche = new Modelo.MetodosLeche();
-            
-            String id_animal = txtIdAnimal.getText();
-            String calidad = txtCalidad.getText();
-            String cantProducida = txtCantProducida.getText();
-            //¡¡¡¡¡¡¡FALTA FECHA!!!!!!!
-            String fechaRev ="" ;
-            String obversaciones = txtObservaciones.getText();
-            
-            if(leche.IngresoRegLeche(id_animal, calidad, cantProducida, fechaRev, obversaciones))
-            {
-                JOptionPane.showMessageDialog(null, "DATOS INGRESADOS EXITOSAMENTE");
-                btnGuardar.setEnabled(false);
-                txtIdAnimal.setText("");
-                txtCalidad.setText("");
-                txtCantProducida.setText("");
-                //FECHA REVISION
-                txtObservaciones.setText("");
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR LOS DATOS");
+            if(MA.VerificarID(NoRegistro.getText())){
+                JOptionPane.showMessageDialog(null, "El No de Registro "+NoRegistro.getText()+" ya esta en uso!!!");
+            }else{
+                Animal.setID_ANIMAL(NoRegistro.getText());
+                Animal.setNO_LOTE(NoLote.getText());
+                try {
+                    Date date = FechaNac.getDate();
+                    String formato = FechaNac.getDateFormatString();
+                    System.out.println(formato);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    fnacim = String.valueOf(sdf.format(date));
+                    System.out.println(fnacim);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);
+                }
+                Animal.setFECHA_NACIMIENTO(fnacim);
+                Animal.setPROCEDENCIA(Procedencia.getText());
+                //                  JFileChooser fileChooser = new JFileChooser();
+                //int seleccion = fileChooser.showOpenDialog(Foto);
+                //if (seleccion == fileChooser.APPROVE_OPTION)
+                //{
+                    //    fichero = fileChooser.getSelectedFile();
+                    //    System.out.println(fichero.getAbsolutePath());
+                    //}            try{
+                    if(foto){
+                        if(fichero.getAbsolutePath() != null){
+                            Animal.setFOTO(fichero.getAbsolutePath());
+                        }
+                    }
+                    if(!"".equals((String) ComboPadre.getSelectedItem())){
+                        Animal.setPADRE(MA.ConsultarID((String) ComboPadre.getSelectedItem()));
+                    }
+                    if(!"".equals((String) ComboMadre.getSelectedItem())){
+                        Animal.setMADRE(MA.ConsultarID((String) ComboMadre.getSelectedItem()));
+                    }
+                    Animal.setTIPO(Tipo.getText());
+                    if(!NoPartos.getText().isEmpty()){
+                        Animal.setNO_HIJOS(Integer.parseInt(NoPartos.getText()));
+                    }
+                    if(!Peso.getText().isEmpty()){
+                        Animal.setPESO(Float.parseFloat(Peso.getText()));
+                    }
+
+                    Animal.setRAZA(MR.ConsultarID((String) ComboRaza.getSelectedItem()));
+                    Animal.setSEXO((String) ComboSexo.getSelectedItem());
+                    Animal.setCATEGORIA(MC.ConsultarID((String) ComboCategoria.getSelectedItem()));
+                    if(!PrecioCompra.getText().isEmpty()){
+                        Animal.setPRECIO_COMPRA(Float.parseFloat(PrecioCompra.getText()));
+                    }
+                    if(!PrecioVenta.getText().isEmpty()){
+                        Animal.setPRECIO_VENTA(Float.parseFloat(PrecioVenta.getText()));
+                    }
+
+                    Animal.setUBICACION(Ubicacion.getText());
+                    Animal.setDESCRIPCION(Descripcion.getText());
+                    Animal.setESTADO((String) ComboEstado.getSelectedItem());
+                    if(MA.IngresoAnimal(Animal)){
+                        JOptionPane.showMessageDialog(null, "Ingresado correctamente!!!!");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Ocurrio un error al ingresar!!!!");
+                    }
+                }
             }
-        }
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
  
     
     //Método para extraer fecha
@@ -225,12 +245,16 @@ public class RegistroLeche extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtCalidad;
     private javax.swing.JTextField txtCantProducida;
     public com.toedter.calendar.JDateChooser txtFechaRev;

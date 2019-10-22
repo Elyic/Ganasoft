@@ -38,134 +38,158 @@ public class RegistroCarne extends javax.swing.JFrame {
         txtFechaVacuna = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         txtObservaciones = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
         txtCalidad = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(450, 400));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Id Animal:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 70, 27));
+        getContentPane().add(txtIdAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 209, -1));
 
         jLabel2.setText("Estado:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 54, 27));
+        getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 209, -1));
 
         jLabel3.setText("Calidad:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 70, 27));
 
         jLabel4.setText("Fecha Vacunación:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 113, 27));
+        getContentPane().add(txtFechaVacuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 160, -1));
 
         jLabel5.setText("Observasiones:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 113, 27));
+        getContentPane().add(txtObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 190, -1));
+        getContentPane().add(txtCalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 209, -1));
 
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("CARNE");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 160, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carne64.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar-documento-icono-7840-32.png"))); // NOI18N
+        jButton2.setText("Guardar");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 130, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(txtCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(txtFechaVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(240, 240, 240)
-                .addComponent(btnGuardar))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(txtCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(txtFechaVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(btnGuardar))
-        );
+        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
+        jButton1.setText("Volver");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 130, 40));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if(txtIdAnimal.getText().isEmpty() || txtEstado.getText().isEmpty() ||
-            txtCalidad.getText().isEmpty() || txtObservaciones.getText().isEmpty())
-        {
-            JOptionPane.showMessageDialog(null, "Debe de ingresar todos los datos del registro.");
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Controlador.Animal Animal = new Controlador.Animal();
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
+        Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
+        String fnacim = "";
+        if(NoRegistro.getText().isEmpty() || NoLote.getText().isEmpty() || FechaNac.getDate().toString().isEmpty()
+            || Procedencia.getText().isEmpty() ){
+
         }else{
-            Modelo.MetodosCarne carne = new Modelo.MetodosCarne();
+            if(MA.VerificarID(NoRegistro.getText())){
+                JOptionPane.showMessageDialog(null, "El No de Registro "+NoRegistro.getText()+" ya esta en uso!!!");
+            }else{
+                Animal.setID_ANIMAL(NoRegistro.getText());
+                Animal.setNO_LOTE(NoLote.getText());
+                try {
+                    Date date = FechaNac.getDate();
+                    String formato = FechaNac.getDateFormatString();
+                    System.out.println(formato);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    fnacim = String.valueOf(sdf.format(date));
+                    System.out.println(fnacim);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);
+                }
+                Animal.setFECHA_NACIMIENTO(fnacim);
+                Animal.setPROCEDENCIA(Procedencia.getText());
+                //                  JFileChooser fileChooser = new JFileChooser();
+                //int seleccion = fileChooser.showOpenDialog(Foto);
+                //if (seleccion == fileChooser.APPROVE_OPTION)
+                //{
+                    //    fichero = fileChooser.getSelectedFile();
+                    //    System.out.println(fichero.getAbsolutePath());
+                    //}            try{
+                    if(foto){
+                        if(fichero.getAbsolutePath() != null){
+                            Animal.setFOTO(fichero.getAbsolutePath());
+                        }
+                    }
+                    if(!"".equals((String) ComboPadre.getSelectedItem())){
+                        Animal.setPADRE(MA.ConsultarID((String) ComboPadre.getSelectedItem()));
+                    }
+                    if(!"".equals((String) ComboMadre.getSelectedItem())){
+                        Animal.setMADRE(MA.ConsultarID((String) ComboMadre.getSelectedItem()));
+                    }
+                    Animal.setTIPO(Tipo.getText());
+                    if(!NoPartos.getText().isEmpty()){
+                        Animal.setNO_HIJOS(Integer.parseInt(NoPartos.getText()));
+                    }
+                    if(!Peso.getText().isEmpty()){
+                        Animal.setPESO(Float.parseFloat(Peso.getText()));
+                    }
 
-            String id_animal = txtIdAnimal.getText();
-            String estado = txtEstado.getText();
-            String calidad = txtCalidad.getText();
-             //¡¡¡¡¡¡¡FALTA FECHA!!!!!!!
-            String fechaRev="";
-            String obversaciones = txtObservaciones.getText();
+                    Animal.setRAZA(MR.ConsultarID((String) ComboRaza.getSelectedItem()));
+                    Animal.setSEXO((String) ComboSexo.getSelectedItem());
+                    Animal.setCATEGORIA(MC.ConsultarID((String) ComboCategoria.getSelectedItem()));
+                    if(!PrecioCompra.getText().isEmpty()){
+                        Animal.setPRECIO_COMPRA(Float.parseFloat(PrecioCompra.getText()));
+                    }
+                    if(!PrecioVenta.getText().isEmpty()){
+                        Animal.setPRECIO_VENTA(Float.parseFloat(PrecioVenta.getText()));
+                    }
 
-            if(carne.IngresoRegCarne(id_animal, estado, calidad, fechaRev, obversaciones))
-            {
-                JOptionPane.showMessageDialog(null, "DATOS INGRESADOS EXITOSAMENTE");
-                btnGuardar.setEnabled(false);
-                txtIdAnimal.setText("");
-                //FECHA VACUNACIÓN
-                txtEstado.setText("");
-                txtCalidad.setText("");
-                txtObservaciones.setText("");
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR LOS DATOS");
+                    Animal.setUBICACION(Ubicacion.getText());
+                    Animal.setDESCRIPCION(Descripcion.getText());
+                    Animal.setESTADO((String) ComboEstado.getSelectedItem());
+                    if(MA.IngresoAnimal(Animal)){
+                        JOptionPane.showMessageDialog(null, "Ingresado correctamente!!!!");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Ocurrio un error al ingresar!!!!");
+                    }
+                }
             }
-        }
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,12 +227,16 @@ public class RegistroCarne extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtCalidad;
     private javax.swing.JTextField txtEstado;
     public com.toedter.calendar.JDateChooser txtFechaVacuna;
