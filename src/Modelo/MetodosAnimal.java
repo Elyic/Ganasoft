@@ -309,4 +309,33 @@ public boolean IngresoAnimal (Animal Animal)
         
         return v;
     }
+    
+    public boolean CargarAnimales(DefaultComboBoxModel modeloCombo){
+         boolean v=false;
+         Modelo.Conexion conexion = new Modelo.Conexion();
+         Connection conecta = conexion.getConexion();
+         if (conecta!=null) {
+             try {
+                 Statement stConsulta =conecta.createStatement();
+                 String sSQL ="SELECT ID_ANIMAL+' - '+DESCRIPCION AS DESCRIPCION FROM ANIMAL"; 
+                 ResultSet rsResultado= stConsulta.executeQuery(sSQL);
+                  modeloCombo.removeAllElements();
+                 while(rsResultado.next()){
+                     modeloCombo.addElement(rsResultado.getObject("DESCRIPCION"));
+                     modeloCombo.setSelectedItem(rsResultado.getObject("DESCRIPCION"));
+                 }
+                 v=true;
+                 conecta.close();
+                   } catch (SQLException ex) {
+                 Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }else{
+             try {
+                 conecta.close();
+             } catch (SQLException ex) {
+                 Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }
+         return v;
+     }
 }

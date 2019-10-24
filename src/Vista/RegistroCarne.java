@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +21,7 @@ public class RegistroCarne extends javax.swing.JFrame {
      */
     public RegistroCarne() {
         initComponents();
+        this.CargarAnimales();
     }
 
     /**
@@ -29,8 +33,8 @@ public class RegistroCarne extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ComboAnimales = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        txtIdAnimal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -49,9 +53,11 @@ public class RegistroCarne extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(450, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        ComboAnimales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(ComboAnimales, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 210, -1));
+
         jLabel1.setText("Id Animal:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 70, 27));
-        getContentPane().add(txtIdAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 209, -1));
 
         jLabel2.setText("Estado:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 54, 27));
@@ -113,84 +119,42 @@ public class RegistroCarne extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(txtEstado.getText().isEmpty() || txtCalidad.getText().isEmpty() || txtFechaVacuna.getDateFormatString().isEmpty() || txtObservaciones.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos!!!!");
+        }else{
+            Controlador.Carne Carne = new Controlador.Carne();
+            Modelo.MetodosCarne MC = new Modelo.MetodosCarne();
+            Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+            
+            Carne.setID_ANIMAL(MA.ConsultarID((String) ComboAnimales.getSelectedItem()));
+            Carne.setESTADO(txtEstado.getText());
+            Carne.setCALIDAD(txtCalidad.getText());
+            Carne.setOBSERVACIONES(txtObservaciones.getText());
+            try {
+        Date date = txtFechaVacuna.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Carne.setFECHA_REVISION(String.valueOf(sdf.format(date)));
+        } catch (Exception e) {
+    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);     
+                }
+            
+            if(MC.IngresoRegCarne(Carne)){
+                JOptionPane.showMessageDialog(null, "Registro ingresado correctamente!!!!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Sucedio un error al ingresar el registro!!!!");
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Controlador.Animal Animal = new Controlador.Animal();
-        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-        Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
-        Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
-        String fnacim = "";
-        if(NoRegistro.getText().isEmpty() || NoLote.getText().isEmpty() || FechaNac.getDate().toString().isEmpty()
-            || Procedencia.getText().isEmpty() ){
 
-        }else{
-            if(MA.VerificarID(NoRegistro.getText())){
-                JOptionPane.showMessageDialog(null, "El No de Registro "+NoRegistro.getText()+" ya esta en uso!!!");
-            }else{
-                Animal.setID_ANIMAL(NoRegistro.getText());
-                Animal.setNO_LOTE(NoLote.getText());
-                try {
-                    Date date = FechaNac.getDate();
-                    String formato = FechaNac.getDateFormatString();
-                    System.out.println(formato);
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    fnacim = String.valueOf(sdf.format(date));
-                    System.out.println(fnacim);
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);
-                }
-                Animal.setFECHA_NACIMIENTO(fnacim);
-                Animal.setPROCEDENCIA(Procedencia.getText());
-                //                  JFileChooser fileChooser = new JFileChooser();
-                //int seleccion = fileChooser.showOpenDialog(Foto);
-                //if (seleccion == fileChooser.APPROVE_OPTION)
-                //{
-                    //    fichero = fileChooser.getSelectedFile();
-                    //    System.out.println(fichero.getAbsolutePath());
-                    //}            try{
-                    if(foto){
-                        if(fichero.getAbsolutePath() != null){
-                            Animal.setFOTO(fichero.getAbsolutePath());
-                        }
-                    }
-                    if(!"".equals((String) ComboPadre.getSelectedItem())){
-                        Animal.setPADRE(MA.ConsultarID((String) ComboPadre.getSelectedItem()));
-                    }
-                    if(!"".equals((String) ComboMadre.getSelectedItem())){
-                        Animal.setMADRE(MA.ConsultarID((String) ComboMadre.getSelectedItem()));
-                    }
-                    Animal.setTIPO(Tipo.getText());
-                    if(!NoPartos.getText().isEmpty()){
-                        Animal.setNO_HIJOS(Integer.parseInt(NoPartos.getText()));
-                    }
-                    if(!Peso.getText().isEmpty()){
-                        Animal.setPESO(Float.parseFloat(Peso.getText()));
-                    }
-
-                    Animal.setRAZA(MR.ConsultarID((String) ComboRaza.getSelectedItem()));
-                    Animal.setSEXO((String) ComboSexo.getSelectedItem());
-                    Animal.setCATEGORIA(MC.ConsultarID((String) ComboCategoria.getSelectedItem()));
-                    if(!PrecioCompra.getText().isEmpty()){
-                        Animal.setPRECIO_COMPRA(Float.parseFloat(PrecioCompra.getText()));
-                    }
-                    if(!PrecioVenta.getText().isEmpty()){
-                        Animal.setPRECIO_VENTA(Float.parseFloat(PrecioVenta.getText()));
-                    }
-
-                    Animal.setUBICACION(Ubicacion.getText());
-                    Animal.setDESCRIPCION(Descripcion.getText());
-                    Animal.setESTADO((String) ComboEstado.getSelectedItem());
-                    if(MA.IngresoAnimal(Animal)){
-                        JOptionPane.showMessageDialog(null, "Ingresado correctamente!!!!");
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Ocurrio un error al ingresar!!!!");
-                    }
-                }
-            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+        public void CargarAnimales(){
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        MA.CargarAnimales((DefaultComboBoxModel)ComboAnimales.getModel());
+    }
     /**
      * @param args the command line arguments
      */
@@ -227,6 +191,7 @@ public class RegistroCarne extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboAnimales;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -240,7 +205,6 @@ public class RegistroCarne extends javax.swing.JFrame {
     private javax.swing.JTextField txtCalidad;
     private javax.swing.JTextField txtEstado;
     public com.toedter.calendar.JDateChooser txtFechaVacuna;
-    private javax.swing.JTextField txtIdAnimal;
     private javax.swing.JTextField txtObservaciones;
     // End of variables declaration//GEN-END:variables
 }

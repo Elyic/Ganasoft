@@ -21,23 +21,22 @@ public class MetodosCarne {
     
     //Este metodo llena el ingreso de leche
     //FALTA EL INGRESO DE REVISIÓN DE FECHA
-    public boolean IngresoRegCarne(String id_animal, String estado, String calidad,String fechaRev, String observaciones)
+    public boolean IngresoRegCarne(Controlador.Carne Carne)
     {
         boolean v = false;
         Connection conecta = conexion.getConexion();
-        String ruta = System.getProperty("user.dir")+"/test.jpg";
          if (conecta!=null) {
              try {
-                 String SQL = "INSER INTO CARNE(ID_ANIMAL, ESTADO, CALIDAD, FECHA_REVISION, OBSERVACIONES)"
+                 String SQL = "INSERT INTO CARNE(ID_ANIMAL, ESTADO, CALIDAD, FECHA_REVISION, OBSERVACIONES)"
                          +" values(?,?,?,?,?)";
                  PreparedStatement preparedStmt = conecta.prepareStatement(SQL);
 //                 File image = new File(ruta);
 //                 FileInputStream fis = new FileInputStream(image);
-                 preparedStmt.setString(1, id_animal);
-                 preparedStmt.setString(2, estado);
-                 preparedStmt.setString(3, calidad);
-                 preparedStmt.setString(4, fechaRev);
-                 preparedStmt.setString(5, observaciones);
+                 preparedStmt.setString(1, Carne.getID_ANIMAL());
+                 preparedStmt.setString(2, Carne.getESTADO());
+                 preparedStmt.setString(3, Carne.getCALIDAD());
+                 preparedStmt.setString(4, Carne.getFECHA_REVISION());
+                 preparedStmt.setString(5, Carne.getOBSERVACIONES());
                  preparedStmt.execute();
                  v = true;
              } catch (SQLException ex) {
