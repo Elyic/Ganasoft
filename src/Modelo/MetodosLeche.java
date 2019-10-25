@@ -24,24 +24,22 @@ public class MetodosLeche {
     
     //Este metodo llena el ingreso de leche
     //FALTA EL INGRESO DE REVISIÓN DE FECHA
-    public boolean IngresoRegLeche (String id_animal, String calidad, String cantProducida,
-            String fechaRev, String observaciones)
+    public boolean IngresoRegLeche (Controlador.Leche L)
     {
         boolean v = false;
         Connection conecta = conexion.getConexion();
-        String ruta = System.getProperty("user.dir")+"/test.jpg";
          if (conecta!=null) {
              try {
-                 String SQL = "INSER INTO Leche(ID_ANIMAL, CALIDAD, CANTIDAD_PRODUCIDA, FECHA_REVISION, OBSERVACIONES)"
+                 String SQL = "INSERT INTO Leche(ID_ANIMAL, CALIDAD, CANTIDAD_PRODUCIDA, FECHA_REVISION, OBSERVACIONES)"
                          +" values(?,?,?,?,?)";
                  PreparedStatement preparedStmt = conecta.prepareStatement(SQL);
 //                 File image = new File(ruta);
 //                 FileInputStream fis = new FileInputStream(image);
-                 preparedStmt.setString(1, id_animal);
-                 preparedStmt.setString(2, calidad);
-                 preparedStmt.setString(3, cantProducida);
-                 preparedStmt.setString(4, fechaRev);
-                 preparedStmt.setString(5, observaciones);
+                 preparedStmt.setString(1, L.getID_ANIMAL());
+                 preparedStmt.setString(2, L.getCALIDAD());
+                 preparedStmt.setString(3, L.getCANTIDAD_PRODUCIDA());
+                 preparedStmt.setString(4, L.getFECHA_REVISION());
+                 preparedStmt.setString(5, L.getOBSERVACIONES());
                  preparedStmt.execute();
                  v = true;
              } catch (SQLException ex) {

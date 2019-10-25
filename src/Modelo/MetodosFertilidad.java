@@ -21,24 +21,22 @@ public class MetodosFertilidad {
     
     //Este metodo llena el ingreso de Fertilidad
     //FALTA EL INGRESO DE REVISIÓN DE FECHA
-    public boolean IngresoRegFertilidad(String id_animal, String calidad, String cantProducida,
-            String fechaRev, String observaciones)
+    public boolean IngresoRegFertilidad(Controlador.Fertilidad F)
     {
         boolean v = false;
         Connection conecta = conexion.getConexion();
-        String ruta = System.getProperty("user.dir")+"/test.jpg";
          if (conecta!=null) {
              try {
-                 String SQL = "INSER INTO Fertilidad(ID_ANIMAL, CALIDAD, CANTIDAD_PRODUCIDA, FECHA_REVISION, OBSERVACIONES)"
+                 String SQL = "INSERT INTO Fertilidad(ID_ANIMAL, CALIDAD, CANTIDAD_PRODUCIDA, FECHA_REVISION, OBSERVACIONES)"
                          +" values(?,?,?,?,?)";
                  PreparedStatement preparedStmt = conecta.prepareStatement(SQL);
 //                 File image = new File(ruta);
 //                 FileInputStream fis = new FileInputStream(image);
-                 preparedStmt.setString(1, id_animal);
-                 preparedStmt.setString(2, calidad);
-                 preparedStmt.setString(3, cantProducida);
-                 preparedStmt.setString(4, fechaRev);
-                 preparedStmt.setString(5, observaciones);
+                 preparedStmt.setString(1, F.getID_ANIMAL());
+                 preparedStmt.setString(2, F.getCALIDAD());
+                 preparedStmt.setString(3, F.getCANTIDAD());
+                 preparedStmt.setString(4, F.getFECHA_REVISION());
+                 preparedStmt.setString(5, F.getOBSERVACIONES());
                  preparedStmt.execute();
                  v = true;
              } catch (SQLException ex) {

@@ -21,24 +21,22 @@ public class MetodosVacunacion {
     
     //Este metodo llena el ingreso de Fertilidad
     //FALTA EL INGRESO DE FECHA DE VACUNACIÓN
-    public boolean IngresoRegVacunacion(String id_animal, String fechaVacuna, String medicina,
-            String cantMedicina, String observaciones)
+    public boolean IngresoRegVacunacion(Controlador.Vacunacion V)
     {
         boolean v = false;
         Connection conecta = conexion.getConexion();
-        String ruta = System.getProperty("user.dir")+"/test.jpg";
          if (conecta!=null) {
              try {
-                 String SQL = "INSER INTO Vacunacion(ID_ANIMAL, FECHA_VACUNACION, MEDICINA, CANTIDAD_MEDICINA, OBSERVACIONES)"
+                 String SQL = "INSERT INTO Vacunacion(ID_ANIMAL, FECHA_VACUNACION, MEDICINA, CANTIDAD_MEDICINA, OBSERVACIONES)"
                          +" values(?,?,?,?,?)";
                  PreparedStatement preparedStmt = conecta.prepareStatement(SQL);
 //                 File image = new File(ruta);
 //                 FileInputStream fis = new FileInputStream(image);
-                 preparedStmt.setString(1, id_animal);
-                 preparedStmt.setString(2, fechaVacuna);
-                 preparedStmt.setString(3, medicina);
-                 preparedStmt.setString(4, cantMedicina);
-                 preparedStmt.setString(5, observaciones);
+                 preparedStmt.setString(1, V.getID_ANIMAL());
+                 preparedStmt.setString(2, V.getFECHA_VACUNACION());
+                 preparedStmt.setString(3, V.getMEDICINA());
+                 preparedStmt.setString(4, V.getCANTIDAD_MEDICINA());
+                 preparedStmt.setString(5, V.getOBSERVACIONES());
                  preparedStmt.execute();
                  v = true;
              } catch (SQLException ex) {

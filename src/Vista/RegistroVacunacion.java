@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +21,7 @@ public class RegistroVacunacion extends javax.swing.JFrame {
      */
     public RegistroVacunacion() {
         initComponents();
+        this.CargarAnimales();
     }
 
     /**
@@ -29,8 +33,8 @@ public class RegistroVacunacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ComboAnimales = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        txtIdAnimal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtMedicina = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -48,9 +52,11 @@ public class RegistroVacunacion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Id Animal:");
+        ComboAnimales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(ComboAnimales, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 210, -1));
+
+        jLabel1.setText("Animal:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 110, 80, 27));
-        getContentPane().add(txtIdAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 209, -1));
 
         jLabel2.setText("Medicina:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 140, 80, 27));
@@ -111,8 +117,37 @@ public class RegistroVacunacion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+     if(txtMedicina.getText().isEmpty() || txtCantMedicina.getText().isEmpty() || txtFechaVacuna.getDateFormatString().isEmpty() || txtObservaciones.getText().isEmpty()){
+         JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos!!!!");
+     }else{
+         Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+         Controlador.Vacunacion V = new Controlador.Vacunacion();
+         Modelo.MetodosVacunacion MV = new Modelo.MetodosVacunacion();
+         
+         V.setID_ANIMAL(MA.ConsultarID((String) ComboAnimales.getSelectedItem()));
+         V.setMEDICINA(txtMedicina.getText());
+         V.setCANTIDAD_MEDICINA(txtCantMedicina.getText());
+         V.setOBSERVACIONES(txtObservaciones.getText());
+       try {
+        Date date = txtFechaVacuna.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        V.setFECHA_VACUNACION(String.valueOf(sdf.format(date)));
+        } catch (Exception e) {
+    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);     
+                }
+       
+        if(MV.IngresoRegVacunacion(V)){
+                JOptionPane.showMessageDialog(null, "Registro ingresado correctamente!!!!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Sucedio un error al ingresar el registro!!!!");
+            } 
+     }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void CargarAnimales(){
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        MA.CargarAnimales((DefaultComboBoxModel)ComboAnimales.getModel());
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 //        Controlador.Animal Animal = new Controlador.Animal();
@@ -225,6 +260,7 @@ public class RegistroVacunacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboAnimales;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -237,7 +273,6 @@ public class RegistroVacunacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtCantMedicina;
     public com.toedter.calendar.JDateChooser txtFechaVacuna;
-    private javax.swing.JTextField txtIdAnimal;
     private javax.swing.JTextField txtMedicina;
     private javax.swing.JTextField txtObservaciones;
     // End of variables declaration//GEN-END:variables

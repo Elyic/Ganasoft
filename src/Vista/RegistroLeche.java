@@ -8,6 +8,7 @@ package Vista;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,7 @@ public class RegistroLeche extends javax.swing.JFrame {
      */
     public RegistroLeche() {
         initComponents();
+        this.CargarAnimales();
     }
 
     /**
@@ -32,13 +34,13 @@ public class RegistroLeche extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ComboAnimales = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtIdAnimal = new javax.swing.JTextField();
         txtCalidad = new javax.swing.JTextField();
         txtCantProducida = new javax.swing.JTextField();
         txtObservaciones = new javax.swing.JTextField();
@@ -52,7 +54,10 @@ public class RegistroLeche extends javax.swing.JFrame {
         setTitle("Registro de Leche");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Id Animal:");
+        ComboAnimales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(ComboAnimales, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 240, -1));
+
+        jLabel1.setText("Animal:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 70, 27));
 
         jLabel2.setText("Calidad: ");
@@ -72,7 +77,6 @@ public class RegistroLeche extends javax.swing.JFrame {
 
         jLabel5.setText("Observasiones:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 113, 27));
-        getContentPane().add(txtIdAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 209, -1));
         getContentPane().add(txtCalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 209, -1));
         getContentPane().add(txtCantProducida, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 156, -1));
         getContentPane().add(txtObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 180, -1));
@@ -115,8 +119,39 @@ public class RegistroLeche extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+      if(txtCalidad.getText().isEmpty() || txtCantProducida.getText().isEmpty() || txtFechaRev.getDateFormatString().isEmpty() || txtObservaciones.getText().isEmpty()){
+          JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos!!!!");
+      }else{
+          Controlador.Leche L = new Controlador.Leche();
+            Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+            Modelo.MetodosLeche ML = new Modelo.MetodosLeche();
+            
+           L.setID_ANIMAL(MA.ConsultarID((String) ComboAnimales.getSelectedItem()));
+           L.setCALIDAD(txtCalidad.getText());
+           L.setCANTIDAD_PRODUCIDA(txtCantProducida.getText());
+           L.setOBSERVACIONES(txtObservaciones.getText());
+           try {
+        Date date = txtFechaRev.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        L.setFECHA_REVISION(String.valueOf(sdf.format(date)));
+        } catch (Exception e) {
+    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);     
+                }
+           
+                      if(ML.IngresoRegLeche(L)){
+                JOptionPane.showMessageDialog(null, "Registro ingresado correctamente!!!!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Sucedio un error al ingresar el registro!!!!");
+            } 
+
+      }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void CargarAnimales(){
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        MA.CargarMadres((DefaultComboBoxModel)ComboAnimales.getModel());
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 //        Controlador.Animal Animal = new Controlador.Animal();
@@ -245,6 +280,7 @@ public class RegistroLeche extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboAnimales;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -258,7 +294,6 @@ public class RegistroLeche extends javax.swing.JFrame {
     private javax.swing.JTextField txtCalidad;
     private javax.swing.JTextField txtCantProducida;
     public com.toedter.calendar.JDateChooser txtFechaRev;
-    private javax.swing.JTextField txtIdAnimal;
     private javax.swing.JTextField txtObservaciones;
     // End of variables declaration//GEN-END:variables
 }

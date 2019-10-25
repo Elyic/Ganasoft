@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +21,7 @@ public class RegistroFertilidad extends javax.swing.JFrame {
      */
     public RegistroFertilidad() {
         initComponents();
+        this.CargarAnimales();
     }
 
     /**
@@ -30,8 +34,8 @@ public class RegistroFertilidad extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtIdAnimal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        ComboAnimales = new javax.swing.JComboBox<>();
         txtCalidad = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCantProducida = new javax.swing.JTextField();
@@ -48,12 +52,20 @@ public class RegistroFertilidad extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Id Animal:");
+        jLabel1.setText("Animal:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 60, 27));
-        getContentPane().add(txtIdAnimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 209, -1));
 
         jLabel2.setText("Calidad: ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 54, 27));
+
+        ComboAnimales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(ComboAnimales, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 210, -1));
+
+        txtCalidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCalidadActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtCalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 209, -1));
 
         jLabel3.setText("Cantidad Producida: ");
@@ -111,8 +123,38 @@ public class RegistroFertilidad extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(txtCalidad.getText().isEmpty() || txtCantProducida.getText().isEmpty() || txtFechaRev.getDateFormatString().isEmpty() || txtObservaciones.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos!!!!");
+        }else{
+            Controlador.Fertilidad F = new Controlador.Fertilidad();
+            Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+            Modelo.MetodosFertilidad MF = new Modelo.MetodosFertilidad();
+          
+            F.setID_ANIMAL(MA.ConsultarID((String) ComboAnimales.getSelectedItem()));
+            F.setCALIDAD(txtCalidad.getText());
+            F.setCANTIDAD(txtCantProducida.getText());
+            F.setOBSERVACIONES(txtObservaciones.getText());
+                        try {
+        Date date = txtFechaRev.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        F.setFECHA_REVISION(String.valueOf(sdf.format(date)));
+        } catch (Exception e) {
+    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);     
+                }
+                        
+           if(MF.IngresoRegFertilidad(F)){
+                JOptionPane.showMessageDialog(null, "Registro ingresado correctamente!!!!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Sucedio un error al ingresar el registro!!!!");
+            } 
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
+            public void CargarAnimales(){
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        MA.CargarAnimales((DefaultComboBoxModel)ComboAnimales.getModel());
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 //        Controlador.Animal Animal = new Controlador.Animal();
@@ -189,6 +231,10 @@ public class RegistroFertilidad extends javax.swing.JFrame {
 //            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void txtCalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCalidadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,6 +271,7 @@ public class RegistroFertilidad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboAnimales;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -238,7 +285,6 @@ public class RegistroFertilidad extends javax.swing.JFrame {
     private javax.swing.JTextField txtCalidad;
     private javax.swing.JTextField txtCantProducida;
     public com.toedter.calendar.JDateChooser txtFechaRev;
-    private javax.swing.JTextField txtIdAnimal;
     private javax.swing.JTextField txtObservaciones;
     // End of variables declaration//GEN-END:variables
 }
