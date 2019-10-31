@@ -200,7 +200,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 160, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setText("Volver");
+        jButton1.setText("Guardar");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -209,10 +209,10 @@ public class RegistroAnimal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 130, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 130, 40));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton2.setText("Guardar");
+        jButton2.setText("Volver");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
@@ -221,7 +221,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, 130, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 130, 40));
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 580));
 
@@ -239,6 +239,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
            || Procedencia.getText().isEmpty() ){
             
         }else{
+            HacerQR();
             if(MA.VerificarID(NoRegistro.getText())){
                 JOptionPane.showMessageDialog(null, "El No de Registro "+NoRegistro.getText()+" ya esta en uso!!!");
             }else{
@@ -322,8 +323,27 @@ if (seleccion == fileChooser.APPROVE_OPTION)
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Modelo.MetodosReportes QR= new Modelo.MetodosReportes();
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_jButton3ActionPerformed
+    public void CargarRaza(){
+     Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
+     MR.CargarRazas((DefaultComboBoxModel)ComboRaza.getModel());
+    }
+    public void CargarCategoria(){
+        Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
+        MC.CargarCategoria((DefaultComboBoxModel) ComboCategoria.getModel());
+    }
+    public void CargarPadres(){
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        MA.CargarPadres((DefaultComboBoxModel)ComboPadre.getModel());
+    }
+    public void CargarMadres(){
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        MA.CargarMadres((DefaultComboBoxModel)ComboMadre.getModel());
+    }
+    
+    public void HacerQR(){
+    Modelo.MetodosReportes QR= new Modelo.MetodosReportes();
         
         QR.ID=NoRegistro.getText();
         QR.Datos="\n"
@@ -347,23 +367,6 @@ if (seleccion == fileChooser.APPROVE_OPTION)
             Logger.getLogger(RegistroAnimal.class.getName()).log(Level.SEVERE, null, ex);
         }
         QR.mostrarPDF(QR.ID);
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-    public void CargarRaza(){
-     Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
-     MR.CargarRazas((DefaultComboBoxModel)ComboRaza.getModel());
-    }
-    public void CargarCategoria(){
-        Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
-        MC.CargarCategoria((DefaultComboBoxModel) ComboCategoria.getModel());
-    }
-    public void CargarPadres(){
-        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-        MA.CargarPadres((DefaultComboBoxModel)ComboPadre.getModel());
-    }
-    public void CargarMadres(){
-        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-        MA.CargarMadres((DefaultComboBoxModel)ComboMadre.getModel());
     }
     /**
      * @param args the command line arguments

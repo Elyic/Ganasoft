@@ -6,6 +6,7 @@
 package Vista;
 
 import Modelo.Conexion;
+import com.itextpdf.text.DocumentException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,6 +63,11 @@ public class Principal extends javax.swing.JFrame {
         jButton2.setContentAreaFilled(false);
         jButton2.setFocusPainted(false);
         jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/30.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 40, 40));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 250, 40));
 
@@ -159,6 +165,24 @@ public class Principal extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+                String x=jTextField1.getText();
+        
+        Modelo.MetodosReportes doc = new Modelo.MetodosReportes();
+        try {
+            doc.crearReporte(x);
+        } catch (DocumentException ex) {
+            Logger.getLogger(ResultadoBusqueada.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ResultadoBusqueada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        doc.mostrarPDF(x);
+        doc.mostrarReporte(x);   
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
