@@ -44,6 +44,7 @@ public class MetodosReportes {
             Logger.getLogger(MetodosReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     public void crearPDF() throws DocumentException{
     
         FileOutputStream elpdf= null;
@@ -95,7 +96,7 @@ public class MetodosReportes {
 }
 
 public void mostrarPDF(String ID){
-    String url = "C:\\Users\\i7DELL\\Documents\\NetBeansProjects\\Ganasoft\\QR-"+ID+".pdf";
+    String url = "QR-"+ID+".pdf";
         
         ProcessBuilder abrir=new ProcessBuilder();
         abrir.command("cmd.exe","/c",url);

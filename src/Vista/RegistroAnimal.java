@@ -329,7 +329,8 @@ if (seleccion == fileChooser.APPROVE_OPTION)
         QR.Datos="\n"
                 + "\n"
                 + "\n"
-                + "\n No. de Registro:"+NoRegistro.getText()+"\n"
+                + "\n"
+                +"No. de Registro:"+NoRegistro.getText()+"\n"
                 +"Raza:"+ComboRaza.getSelectedItem()+"\n"
                 +"Categoría:"+ComboCategoria.getSelectedItem()+"\n"
                 +"Fecha de Nac.:"+"Ayudame"+"\n"                    //Debo meter la fecha aqui pero no se como
