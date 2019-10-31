@@ -5,9 +5,13 @@
  */
 package Vista;
 
+import com.itextpdf.text.DocumentException;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -184,7 +188,6 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, -1));
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/codigo-qr.png"))); // NOI18N
         jButton3.setText("Generar QR");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
@@ -197,7 +200,6 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 160, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
         jButton1.setText("Volver");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
@@ -210,7 +212,6 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 130, 40));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar-documento-icono-7840-32.png"))); // NOI18N
         jButton2.setText("Guardar");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
@@ -221,11 +222,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, 130, 40));
-
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registro64.png"))); // NOI18N
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
-
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 580));
 
         pack();
@@ -326,6 +323,30 @@ if (seleccion == fileChooser.APPROVE_OPTION)
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        Modelo.MetodosReportes QR= new Modelo.MetodosReportes();
+        
+        QR.ID=NoRegistro.getText();
+        QR.Datos="\n"
+                + "\n"
+                + "\n"
+                + "\n No. de Registro:"+NoRegistro.getText()+"\n"
+                +"Raza:"+ComboRaza.getSelectedItem()+"\n"
+                +"Categoría:"+ComboCategoria.getSelectedItem()+"\n"
+                +"Fecha de Nac.:"+"Ayudame"+"\n"                    //Debo meter la fecha aqui pero no se como
+                +"Precio: Q."+PrecioVenta.getText()+"\n";                
+        
+        try {
+            QR.crearQR(QR.Datos);
+        } catch (IOException ex) {
+            Logger.getLogger(RegistroAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            QR.crearPDF();
+        } catch (DocumentException ex) {
+            Logger.getLogger(RegistroAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        QR.mostrarPDF(QR.ID);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
     public void CargarRaza(){
      Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
