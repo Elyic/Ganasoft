@@ -74,6 +74,11 @@ public class MetodosReportes {
             table.setWidths(new int[]{4, 4});
             table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
             Paragraph p2 = new Paragraph();
+            Datos="\n"
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + Datos;
             p2 = new Paragraph(Datos);
             p2.add(new Phrase(Chunk.NEWLINE));
             p2.add(new Phrase(Chunk.NEWLINE));

@@ -323,8 +323,7 @@ if (seleccion == fileChooser.APPROVE_OPTION)
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
     public void CargarRaza(){
      Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
@@ -345,16 +344,16 @@ if (seleccion == fileChooser.APPROVE_OPTION)
     
     public void HacerQR(){
     Modelo.MetodosReportes QR= new Modelo.MetodosReportes();
-        
+        String fnacim;
+        Date date = FechaNac.getDate();
+        String formato = FechaNac.getDateFormatString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        fnacim = String.valueOf(sdf.format(date));
         QR.ID=NoRegistro.getText();
-        QR.Datos="\n"
-                + "\n"
-                + "\n"
-                + "\n"
-                +"No. de Registro:"+NoRegistro.getText()+"\n"
+        QR.Datos="No. de Registro:"+NoRegistro.getText()+"\n"
                 +"Raza:"+ComboRaza.getSelectedItem()+"\n"
                 +"Categoría:"+ComboCategoria.getSelectedItem()+"\n"
-                +"Fecha de Nac.:"+"Ayudame"+"\n"                    //Debo meter la fecha aqui pero no se como
+                +"Fecha de Nac.:"+fnacim+"\n"                    //Debo meter la fecha aqui pero no se como
                 +"Precio: Q."+PrecioVenta.getText()+"\n";                
         
         try {
