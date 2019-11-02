@@ -5,24 +5,33 @@
  */
 package Vista;
 
+import Modelo.MetodosAnimal;
+import static Vista.EditarFertilidad.ID;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.DefaultComboBoxModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author Elyic
  */
-public class RegistroFertilidad extends javax.swing.JFrame {
+public class EditarOrdeño extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegistroFertilidad
+     * Creates new form EditarOrdeño
      */
-    public RegistroFertilidad() {
+    public static int ID;
+    public EditarOrdeño() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.CargarAnimales();
+        NoRegistro.setEditable(false);
+        this.CargarInfo();
     }
 
     /**
@@ -36,58 +45,49 @@ public class RegistroFertilidad extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        ComboAnimales = new javax.swing.JComboBox<>();
-        txtCalidad = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCantProducida = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtFechaRev = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
+        txtCalidad = new javax.swing.JTextField();
+        txtCantProducida = new javax.swing.JTextField();
         txtObservaciones = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        txtFechaRev = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        NoRegistro = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Animal:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 60, 27));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 70, 27));
 
         jLabel2.setText("Calidad: ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 54, 27));
 
-        ComboAnimales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(ComboAnimales, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 210, -1));
-
-        txtCalidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCalidadActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtCalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 209, -1));
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("ORDEÑO");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 170, -1));
 
         jLabel3.setText("Cantidad Producida: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 120, 27));
-        getContentPane().add(txtCantProducida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 156, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 120, 27));
 
         jLabel4.setText("Fecha Revisión: ");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 113, 27));
-        getContentPane().add(txtFechaRev, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 170, -1));
 
         jLabel5.setText("Observasiones:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 113, 27));
-        getContentPane().add(txtObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 180, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 113, 27));
+        getContentPane().add(txtCalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 209, -1));
+        getContentPane().add(txtCantProducida, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 156, -1));
+        getContentPane().add(txtObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 180, -1));
+        getContentPane().add(txtFechaRev, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 160, -1));
 
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 33)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("PRODUCCION");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 230, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fertilizacion64.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vaca64.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -101,7 +101,7 @@ public class RegistroFertilidad extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 130, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 130, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
@@ -114,58 +114,82 @@ public class RegistroFertilidad extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 130, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 130, 40));
+        getContentPane().add(NoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 220, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 450, 470));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 440, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        void CargarInfo(){
+            Modelo.Conexion conexion = new Modelo.Conexion();
+            Connection conecta = conexion.getConexion();
+        if (conecta!=null) {
+            try {
+                String SQL="SELECT * FROM LECHE WHERE ID_LECHE = ?";
+                PreparedStatement consulta = conecta.prepareStatement(SQL);
+                consulta.setInt(1, ID);
+                ResultSet resultado = consulta.executeQuery();
+                System.out.println(resultado);
+                while (resultado.next()) { //Es mas correcto poner el next en el while, te hace lo mismo que tenias en tu antiguo codigo pero en menos lineas y mas limpio
+                    NoRegistro.setText(resultado.getString("ID_ANIMAL"));
+                    txtCalidad.setText(resultado.getString("CALIDAD"));
+                    txtCantProducida.setText(resultado.getString("CANTIDAD_PRODUCIDA"));
+                    txtFechaRev.setDate(resultado.getDate("FECHA_REVISION"));
+                    txtObservaciones.setText(resultado.getString("OBSERVACIONES"));
+                }
+                conecta.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }           
+        }else{
+            try {
+                conecta.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+
         if(txtCalidad.getText().isEmpty() || txtCantProducida.getText().isEmpty() || txtFechaRev.getDateFormatString().isEmpty() || txtObservaciones.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos!!!!");
         }else{
-            Controlador.Fertilidad F = new Controlador.Fertilidad();
+            Controlador.Leche L = new Controlador.Leche();
             Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-            Modelo.MetodosFertilidad MF = new Modelo.MetodosFertilidad();
-          
-            F.setID_ANIMAL(MA.ConsultarID((String) ComboAnimales.getSelectedItem()));
-            F.setCALIDAD(txtCalidad.getText());
-            F.setCANTIDAD(txtCantProducida.getText());
-            F.setOBSERVACIONES(txtObservaciones.getText());
-                        try {
-        Date date = txtFechaRev.getDate();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        F.setFECHA_REVISION(String.valueOf(sdf.format(date)));
-        } catch (Exception e) {
-    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);     
-                }
-                        
-           if(MF.IngresoRegFertilidad(F)){
-                JOptionPane.showMessageDialog(null, "Registro ingresado correctamente!!!!");
+            Modelo.MetodosLeche ML = new Modelo.MetodosLeche();
+
+            L.setID_ANIMAL(NoRegistro.getText());
+            L.setID_LECHE(ID);
+            L.setCALIDAD(txtCalidad.getText());
+            L.setCANTIDAD_PRODUCIDA(txtCantProducida.getText());
+            L.setOBSERVACIONES(txtObservaciones.getText());
+            try {
+                Date date = txtFechaRev.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                L.setFECHA_REVISION(String.valueOf(sdf.format(date)));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);
+            }
+
+            if(ML.Actualizar(L)){
+                JOptionPane.showMessageDialog(null, "Registro actualizado correctamente!!!!");
             }else{
-                JOptionPane.showMessageDialog(null, "Sucedio un error al ingresar el registro!!!!");
-            } 
+                JOptionPane.showMessageDialog(null, "Sucedio un error al actualizar el registro!!!!");
+            }
+
         }
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
-            public void CargarAnimales(){
-        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-        MA.CargarAnimales((DefaultComboBoxModel)ComboAnimales.getModel());
-    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Fertilidad F = new Fertilidad();
-        F.setVisible(true);
+
+        Ordeño O = new Ordeño();
+        O.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtCalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCalidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,36 +208,36 @@ public class RegistroFertilidad extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroFertilidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarOrdeño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroFertilidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarOrdeño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroFertilidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarOrdeño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroFertilidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarOrdeño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroFertilidad().setVisible(true);
+                new EditarOrdeño().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboAnimales;
+    private javax.swing.JTextField NoRegistro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtCalidad;
     private javax.swing.JTextField txtCantProducida;
     public com.toedter.calendar.JDateChooser txtFechaRev;

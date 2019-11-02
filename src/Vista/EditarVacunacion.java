@@ -5,24 +5,33 @@
  */
 package Vista;
 
+import Modelo.MetodosAnimal;
+import static Vista.EditarCarne.ID;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.DefaultComboBoxModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author Elyic
  */
-public class RegistroVacunacion extends javax.swing.JFrame {
+public class EditarVacunacion extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegistroVacunacion
+     * Creates new form EditarVacunacion
      */
-    public RegistroVacunacion() {
+    public static int ID;
+    public EditarVacunacion() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.CargarAnimales();
+        NoRegistro.setEditable(false);
+        this.CargarInfo();
     }
 
     /**
@@ -34,7 +43,6 @@ public class RegistroVacunacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ComboAnimales = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtMedicina = new javax.swing.JTextField();
@@ -48,13 +56,11 @@ public class RegistroVacunacion extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        NoRegistro = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        ComboAnimales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(ComboAnimales, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 210, -1));
 
         jLabel1.setText("Animal:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 110, 80, 27));
@@ -109,6 +115,7 @@ public class RegistroVacunacion extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/jeringa64.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
+        getContentPane().add(NoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 220, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 450, 470));
@@ -118,37 +125,64 @@ public class RegistroVacunacion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-     if(txtMedicina.getText().isEmpty() || txtCantMedicina.getText().isEmpty() || txtFechaVacuna.getDateFormatString().isEmpty() || txtObservaciones.getText().isEmpty()){
-         JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos!!!!");
-     }else{
-         Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-         Controlador.Vacunacion V = new Controlador.Vacunacion();
-         Modelo.MetodosVacunacion MV = new Modelo.MetodosVacunacion();
-         
-         V.setID_ANIMAL(MA.ConsultarID((String) ComboAnimales.getSelectedItem()));
-         V.setMEDICINA(txtMedicina.getText());
-         V.setCANTIDAD_MEDICINA(txtCantMedicina.getText());
-         V.setOBSERVACIONES(txtObservaciones.getText());
-       try {
-        Date date = txtFechaVacuna.getDate();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        V.setFECHA_VACUNACION(String.valueOf(sdf.format(date)));
-        } catch (Exception e) {
-    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);     
-                }
-       
-        if(MV.IngresoRegVacunacion(V)){
-                JOptionPane.showMessageDialog(null, "Registro ingresado correctamente!!!!");
+        if(txtMedicina.getText().isEmpty() || txtCantMedicina.getText().isEmpty() || txtFechaVacuna.getDateFormatString().isEmpty() || txtObservaciones.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos!!!!");
+        }else{
+            Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+            Controlador.Vacunacion V = new Controlador.Vacunacion();
+            Modelo.MetodosVacunacion MV = new Modelo.MetodosVacunacion();
+
+            V.setID_ANIMAL(NoRegistro.getText());
+            V.setID_VACUNACION(ID);
+            V.setMEDICINA(txtMedicina.getText());
+            V.setCANTIDAD_MEDICINA(txtCantMedicina.getText());
+            V.setOBSERVACIONES(txtObservaciones.getText());
+            try {
+                Date date = txtFechaVacuna.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                V.setFECHA_VACUNACION(String.valueOf(sdf.format(date)));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);
+            }
+
+            if(MV.Actualizar(V)){
+                JOptionPane.showMessageDialog(null, "Registro actualizado correctamente!!!!");
             }else{
-                JOptionPane.showMessageDialog(null, "Sucedio un error al ingresar el registro!!!!");
-            } 
-     }
+                JOptionPane.showMessageDialog(null, "Sucedio un error al actualizar el registro!!!!");
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void CargarAnimales(){
-        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-        MA.CargarAnimales((DefaultComboBoxModel)ComboAnimales.getModel());
-    }
+    void CargarInfo(){
+            Modelo.Conexion conexion = new Modelo.Conexion();
+            Connection conecta = conexion.getConexion();
+        if (conecta!=null) {
+            try {
+                String SQL="SELECT * FROM VACUNACION WHERE ID_VACUNACION = ?";
+                PreparedStatement consulta = conecta.prepareStatement(SQL);
+                consulta.setInt(1, ID);
+                ResultSet resultado = consulta.executeQuery();
+                System.out.println(resultado);
+                while (resultado.next()) { //Es mas correcto poner el next en el while, te hace lo mismo que tenias en tu antiguo codigo pero en menos lineas y mas limpio
+                    NoRegistro.setText(resultado.getString("ID_ANIMAL"));
+                    txtMedicina.setText(resultado.getString("MEDICINA"));
+                    txtCantMedicina.setText(resultado.getString("CANTIDAD_MEDICINA"));
+                    txtFechaVacuna.setDate(resultado.getDate("FECHA_VACUNACION"));
+                    txtObservaciones.setText(resultado.getString("OBSERVACIONES"));
+                }
+                conecta.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }           
+        }else{
+            try {
+                conecta.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Vacunacion V = new Vacunacion();
@@ -173,26 +207,26 @@ public class RegistroVacunacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroVacunacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarVacunacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroVacunacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarVacunacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroVacunacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarVacunacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroVacunacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarVacunacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroVacunacion().setVisible(true);
+                new EditarVacunacion().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboAnimales;
+    private javax.swing.JTextField NoRegistro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

@@ -5,10 +5,16 @@
  */
 package Vista;
 
-import com.itextpdf.text.DocumentException;
+import Modelo.MetodosAnimal;
+import static Vista.RegistroAnimal.imagen;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -23,21 +29,27 @@ import javax.swing.JOptionPane;
  *
  * @author Elyic
  */
-public class RegistroAnimal extends javax.swing.JFrame {
+public class EditarAnimal extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegistroAnimal
+     * Creates new form EditarAnimal
      */
     File fichero;
     boolean foto = false;
-    public RegistroAnimal() {
+    public static String ID = "";
+    public EditarAnimal() {
         initComponents();
-        this.setLocationRelativeTo(null);
         CargarRaza();
         CargarCategoria();
         CargarPadres();
         CargarMadres();
+        this.setLocationRelativeTo(null);
+        EditarAnimal.NoRegistro.setText(ID);
+        EditarAnimal.NoRegistro.setEnabled(false);
+        System.out.println(ID);
+        this.CargarInfo();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,16 +97,11 @@ public class RegistroAnimal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Foto = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
         imagen = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("No. Registro");
@@ -161,6 +168,12 @@ public class RegistroAnimal extends javax.swing.JFrame {
 
         jLabel16.setText("Descripcion");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, -1, -1));
+
+        Descripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DescripcionActionPerformed(evt);
+            }
+        });
         getContentPane().add(Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 290, -1));
 
         ComboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Macho", "Hembra" }));
@@ -189,20 +202,8 @@ public class RegistroAnimal extends javax.swing.JFrame {
         jLabel20.setBackground(new java.awt.Color(255, 255, 255));
         jLabel20.setFont(new java.awt.Font("Comic Sans MS", 1, 33)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("REGISTRO");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, -1));
-
-        jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton3.setText("Generar QR");
-        jButton3.setBorder(null);
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 160, 40));
+        jLabel20.setText("EDITAR ANIMAL");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, -1));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setText("Guardar");
@@ -227,120 +228,112 @@ public class RegistroAnimal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 130, 40));
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
         getContentPane().add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 90, 110));
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 750, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Controlador.Animal Animal = new Controlador.Animal();
-        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-        Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
-        Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
-        String fnacim = "";
-        if(NoRegistro.getText().isEmpty() || NoLote.getText().isEmpty() || FechaNac.getDate().toString().isEmpty()
-           || Procedencia.getText().isEmpty() ){
-            
-        }else{
-            HacerQR();
-            if(MA.VerificarID(NoRegistro.getText())){
-                JOptionPane.showMessageDialog(null, "El No de Registro "+NoRegistro.getText()+" ya esta en uso!!!");
-            }else{
-            Animal.setID_ANIMAL(NoRegistro.getText());
-            Animal.setNO_LOTE(NoLote.getText());
-        try {
-        Date date = FechaNac.getDate();
-        String formato = FechaNac.getDateFormatString();
-            System.out.println(formato);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        fnacim = String.valueOf(sdf.format(date));
-        System.out.println(fnacim);
-        } catch (Exception e) {
-    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);
-}
-                    Animal.setFECHA_NACIMIENTO(fnacim);
-            Animal.setPROCEDENCIA(Procedencia.getText());
-//                  JFileChooser fileChooser = new JFileChooser();
-//int seleccion = fileChooser.showOpenDialog(Foto);
-//if (seleccion == fileChooser.APPROVE_OPTION)
-//{
-//    fichero = fileChooser.getSelectedFile();
-//    System.out.println(fichero.getAbsolutePath());
-//}            try{
-        if(foto){
-                          if(fichero.getAbsolutePath() != null){
-            Animal.setFOTO(fichero.getAbsolutePath());
-                }  
-        }
-            if(!"".equals((String) ComboPadre.getSelectedItem())){
-                Animal.setPADRE(MA.ConsultarID((String) ComboPadre.getSelectedItem()));
-            }
-            if(!"".equals((String) ComboMadre.getSelectedItem())){ 
-            Animal.setMADRE(MA.ConsultarID((String) ComboMadre.getSelectedItem()));
-            }
-            Animal.setTIPO(Tipo.getText());
-            if(!NoPartos.getText().isEmpty()){
-             Animal.setNO_HIJOS(Integer.parseInt(NoPartos.getText()));
-            }
-            if(!Peso.getText().isEmpty()){
-            Animal.setPESO(Float.parseFloat(Peso.getText()));
-            }
-
-            Animal.setRAZA(MR.ConsultarID((String) ComboRaza.getSelectedItem()));
-            Animal.setSEXO((String) ComboSexo.getSelectedItem());
-            Animal.setCATEGORIA(MC.ConsultarID((String) ComboCategoria.getSelectedItem()));
-            if(!PrecioCompra.getText().isEmpty()){
-            Animal.setPRECIO_COMPRA(Float.parseFloat(PrecioCompra.getText()));    
-            }
-            if(!PrecioVenta.getText().isEmpty()){
-                Animal.setPRECIO_VENTA(Float.parseFloat(PrecioVenta.getText()));
-            }
-            
-            Animal.setUBICACION(Ubicacion.getText());
-            Animal.setDESCRIPCION(Descripcion.getText());
-            Animal.setESTADO((String) ComboEstado.getSelectedItem());
-            if(MA.IngresoAnimal(Animal)){
-                JOptionPane.showMessageDialog(null, "Ingresado correctamente!!!!");
-            }else{
-                JOptionPane.showMessageDialog(null, "Ocurrio un error al ingresar!!!!");
-            }    
-            }
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void FotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FotoActionPerformed
         // TODO add your handling code here:
-      JFileChooser fileChooser = new JFileChooser();
-int seleccion = fileChooser.showOpenDialog(Foto);
-if (seleccion == fileChooser.APPROVE_OPTION)
-{
-    fichero = fileChooser.getSelectedFile();
-    System.out.println(fichero.getAbsolutePath());
-    foto = true;
-    
-    String ruta = fichero.getAbsolutePath();
+        JFileChooser fileChooser = new JFileChooser();
+        int seleccion = fileChooser.showOpenDialog(Foto);
+        if (seleccion == fileChooser.APPROVE_OPTION)
+        {
+            fichero = fileChooser.getSelectedFile();
+            System.out.println(fichero.getAbsolutePath());
+            foto = true;
+                String ruta = fichero.getAbsolutePath();
     ImageIcon fot = new ImageIcon(ruta);
     Icon icono = new ImageIcon(fot.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
     imagen.setIcon(icono);
     imagen.repaint();
-}
+        }
     }//GEN-LAST:event_FotoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        Animal A = new Animal();
-        A.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    void CargarInfo(){
+                    Modelo.Conexion conexion = new Modelo.Conexion();
+            Connection conecta = conexion.getConexion();
+        if (conecta!=null) {
+            try {
+                String SQL="SELECT \n" +
+"A.ID_ANIMAL\n" +
+",A.DESCRIPCION\n" +
+",cast(R.ID_RAZA as varchar(10))+' - '+R.DESCRIPCION AS RAZA\n" +
+",A.TIPO\n" +
+",A.FECHA_NACIMIENTO\n" +
+",ISNULL(A.EDAD,'') AS EDAD\n" +
+",ISNULL(A.NO_LOTE,'') AS NO_LOTE\n" +
+",A.PROCEDENCIA\n" +
+",cast(C.ID_CATEGORIA as varchar(10))+' - '+C.DESCRIPCION AS CATEGORIA\n" +
+",A.NO_HIJOS\n" +
+",A.PESO\n" +
+",ISNULL(PADRE.ID_ANIMAL+' - '+PADRE.DESCRIPCION,'') AS PADRE\n" +
+",ISNULL(MADRE.ID_ANIMAL+' - '+MADRE.DESCRIPCION,'') AS MADRE\n" +
+",A.UBICACION\n" +
+",A.PRECIO_COMPRA\n" +
+",A.PRECIO_VENTA\n" +
+",A.ESTADO\n" +
+",A.SEXO\n" +
+",A.FOTO\n" +
+"FROM ANIMAL A \n" +
+"LEFT JOIN RAZA R\n" +
+"ON A.RAZA = R.ID_RAZA\n" +
+"LEFT JOIN CATEGORIA C\n" +
+"ON C.ID_CATEGORIA = A.CATEGORIA\n" +
+"LEFT JOIN ANIMAL PADRE\n" +
+"ON PADRE.ID_ANIMAL = A.ID_ANIMAL\n" +
+"LEFT JOIN ANIMAL MADRE\n" +
+"ON MADRE.ID_ANIMAL = A.ID_ANIMAL\n" +
+"WHERE A.ID_ANIMAL = ?";
+                PreparedStatement consulta = conecta.prepareStatement(SQL);
+                consulta.setString(1, ID);
+                ResultSet resultado = consulta.executeQuery();
+                System.out.println(resultado);
+                while (resultado.next()) { //Es mas correcto poner el next en el while, te hace lo mismo que tenias en tu antiguo codigo pero en menos lineas y mas limpio
+//                    ID = resultado.getString("ID_ANIMAL");
+                    Descripcion.setText(resultado.getString("DESCRIPCION"));
+                    ComboRaza.setSelectedItem(resultado.getString("RAZA"));
+                    Tipo.setText(resultado.getString("TIPO"));
+                    FechaNac.setDate(resultado.getDate("FECHA_NACIMIENTO"));
+                    NoLote.setText(resultado.getString("NO_LOTE"));
+                    Procedencia.setText(resultado.getString("PROCEDENCIA"));
+                    ComboCategoria.setSelectedItem(resultado.getString("CATEGORIA"));
+                    NoPartos.setText(resultado.getString("NO_HIJOS"));
+                    Peso.setText(resultado.getString("PESO"));
+                    ComboPadre.setSelectedItem(resultado.getString("PADRE"));
+                    ComboMadre.setSelectedItem(resultado.getString("MADRE"));
+                    Ubicacion.setText(resultado.getString("UBICACION"));
+                    PrecioCompra.setText(resultado.getString("PRECIO_COMPRA"));
+                    PrecioVenta.setText(resultado.getString("PRECIO_VENTA"));
+                    ComboEstado.setSelectedItem(resultado.getString("ESTADO"));
+                    ComboSexo.setSelectedItem(resultado.getString("SEXO"));
+                    
+                    Image i = null;
+                    System.out.println(resultado.getBlob("FOTO"));
+                    if(resultado.getBlob("FOTO") != null){
+                    Blob blob = resultado.getBlob("FOTO");
+                    i = javax.imageio.ImageIO.read(blob.getBinaryStream());
+                    ImageIcon image = new ImageIcon(i.getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+                    imagen.setIcon(image);
+                    imagen.repaint();
+                    }
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-    public void CargarRaza(){
+                }
+                conecta.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }           catch (IOException ex) {
+                            Logger.getLogger(EditarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+        }else{
+            try {
+                conecta.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MetodosAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                }
+        public void CargarRaza(){
      Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
      MR.CargarRazas((DefaultComboBoxModel)ComboRaza.getModel());
     }
@@ -356,37 +349,91 @@ if (seleccion == fileChooser.APPROVE_OPTION)
         Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
         MA.CargarMadres((DefaultComboBoxModel)ComboMadre.getModel());
     }
-    
-    public void HacerQR(){
-    Modelo.MetodosReportes QR= new Modelo.MetodosReportes();
-        String fnacim;
-        Date date = FechaNac.getDate();
-        String formato = FechaNac.getDateFormatString();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        fnacim = String.valueOf(sdf.format(date));
-        QR.ID=NoRegistro.getText();
-        QR.Datos="No. de Registro:"+NoRegistro.getText()+"\n"
-                +"Raza:"+ComboRaza.getSelectedItem()+"\n"
-                +"Categoría:"+ComboCategoria.getSelectedItem()+"\n"
-                +"Fecha de Nac.:"+fnacim+"\n"                    //Debo meter la fecha aqui pero no se como
-                +"Precio: Q."+PrecioVenta.getText()+"\n";                
-        
-        try {
-            QR.crearQR(QR.Datos);
-        } catch (IOException ex) {
-            Logger.getLogger(RegistroAnimal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            QR.crearPDF();
-        } catch (DocumentException ex) {
-            Logger.getLogger(RegistroAnimal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        QR.mostrarPDF(QR.ID);
-    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Controlador.Animal Animal = new Controlador.Animal();
+        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
+        Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
+        Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
+        String fnacim = "";
+        if(NoRegistro.getText().isEmpty() || NoLote.getText().isEmpty() || FechaNac.getDate().toString().isEmpty()
+            || Procedencia.getText().isEmpty() ){
+
+        }else{
+                Animal.setID_ANIMAL(NoRegistro.getText());
+                Animal.setNO_LOTE(NoLote.getText());
+                try {
+                    Date date = FechaNac.getDate();
+                    String formato = FechaNac.getDateFormatString();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    fnacim = String.valueOf(sdf.format(date));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);
+                }
+                Animal.setFECHA_NACIMIENTO(fnacim);
+                Animal.setPROCEDENCIA(Procedencia.getText());
+                //                  JFileChooser fileChooser = new JFileChooser();
+                //int seleccion = fileChooser.showOpenDialog(Foto);
+                //if (seleccion == fileChooser.APPROVE_OPTION)
+                //{
+                    //    fichero = fileChooser.getSelectedFile();
+                    //    System.out.println(fichero.getAbsolutePath());
+                    //}            try{
+                    if(foto){
+                        if(fichero.getAbsolutePath() != null){
+                            Animal.setFOTO(fichero.getAbsolutePath());
+                        }
+                    }
+                    if(!"".equals((String) ComboPadre.getSelectedItem())){
+                        Animal.setPADRE(MA.ConsultarID((String) ComboPadre.getSelectedItem()));
+                    }
+                    if(!"".equals((String) ComboMadre.getSelectedItem())){
+                        Animal.setMADRE(MA.ConsultarID((String) ComboMadre.getSelectedItem()));
+                    }
+                    Animal.setTIPO(Tipo.getText());
+                    if(!NoPartos.getText().isEmpty()){
+                        Animal.setNO_HIJOS(Integer.parseInt(NoPartos.getText()));
+                    }
+                    if(!Peso.getText().isEmpty()){
+                        Animal.setPESO(Float.parseFloat(Peso.getText()));
+                    }
+
+                    Animal.setRAZA(MR.ConsultarID((String) ComboRaza.getSelectedItem()));
+                    Animal.setSEXO((String) ComboSexo.getSelectedItem());
+                    Animal.setCATEGORIA(MC.ConsultarID((String) ComboCategoria.getSelectedItem()));
+                    if(!PrecioCompra.getText().isEmpty()){
+                        Animal.setPRECIO_COMPRA(Float.parseFloat(PrecioCompra.getText()));
+                    }
+                    if(!PrecioVenta.getText().isEmpty()){
+                        Animal.setPRECIO_VENTA(Float.parseFloat(PrecioVenta.getText()));
+                    }
+
+                    Animal.setUBICACION(Ubicacion.getText());
+                    Animal.setDESCRIPCION(Descripcion.getText());
+                    Animal.setESTADO((String) ComboEstado.getSelectedItem());
+                    if(MA.ActualizaAnimal(Animal)){
+                        JOptionPane.showMessageDialog(null, "Actualizado correctamente!!!!");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Ocurrio un error al actualizar!!!!");
+                    }
+                }
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Animal A = new Animal();
+        A.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void DescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DescripcionActionPerformed
+
     /**
      * @param args the command line arguments
      */
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -401,20 +448,20 @@ if (seleccion == fileChooser.APPROVE_OPTION)
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroAnimal().setVisible(true);
+                new EditarAnimal().setVisible(true);
             }
         });
     }
@@ -431,7 +478,7 @@ if (seleccion == fileChooser.APPROVE_OPTION)
     private javax.swing.JButton Foto;
     private javax.swing.JTextField NoLote;
     private javax.swing.JTextField NoPartos;
-    private javax.swing.JTextField NoRegistro;
+    public static javax.swing.JTextField NoRegistro;
     private javax.swing.JTextField Peso;
     private javax.swing.JTextField PrecioCompra;
     private javax.swing.JTextField PrecioVenta;
@@ -441,7 +488,6 @@ if (seleccion == fileChooser.APPROVE_OPTION)
     public static javax.swing.JLabel imagen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -452,10 +498,8 @@ if (seleccion == fileChooser.APPROVE_OPTION)
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

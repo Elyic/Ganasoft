@@ -22,6 +22,7 @@ public class RegistroLeche extends javax.swing.JFrame {
      */
     public RegistroLeche() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.CargarAnimales();
     }
 
@@ -153,79 +154,10 @@ public class RegistroLeche extends javax.swing.JFrame {
         MA.CargarMadres((DefaultComboBoxModel)ComboAnimales.getModel());
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-//        Controlador.Animal Animal = new Controlador.Animal();
-//        Modelo.MetodosAnimal MA = new Modelo.MetodosAnimal();
-//        Modelo.MetodosRaza MR = new Modelo.MetodosRaza();
-//        Modelo.MetodosCategoria MC = new Modelo.MetodosCategoria();
-//        String fnacim = "";
-//        if(NoRegistro.getText().isEmpty() || NoLote.getText().isEmpty() || FechaNac.getDate().toString().isEmpty()
-//            || Procedencia.getText().isEmpty() ){
-//
-//        }else{
-//            if(MA.VerificarID(NoRegistro.getText())){
-//                JOptionPane.showMessageDialog(null, "El No de Registro "+NoRegistro.getText()+" ya esta en uso!!!");
-//            }else{
-//                Animal.setID_ANIMAL(NoRegistro.getText());
-//                Animal.setNO_LOTE(NoLote.getText());
-//                try {
-//                    Date date = FechaNac.getDate();
-//                    String formato = FechaNac.getDateFormatString();
-//                    System.out.println(formato);
-//                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//                    fnacim = String.valueOf(sdf.format(date));
-//                    System.out.println(fnacim);
-//                } catch (Exception e) {
-//                    JOptionPane.showMessageDialog(null, "Escoja un fecha Valida ", "Error..!!", JOptionPane.ERROR_MESSAGE);
-//                }
-//                Animal.setFECHA_NACIMIENTO(fnacim);
-//                Animal.setPROCEDENCIA(Procedencia.getText());
-//                //                  JFileChooser fileChooser = new JFileChooser();
-//                //int seleccion = fileChooser.showOpenDialog(Foto);
-//                //if (seleccion == fileChooser.APPROVE_OPTION)
-//                //{
-//                    //    fichero = fileChooser.getSelectedFile();
-//                    //    System.out.println(fichero.getAbsolutePath());
-//                    //}            try{
-//                    if(foto){
-//                        if(fichero.getAbsolutePath() != null){
-//                            Animal.setFOTO(fichero.getAbsolutePath());
-//                        }
-//                    }
-//                    if(!"".equals((String) ComboPadre.getSelectedItem())){
-//                        Animal.setPADRE(MA.ConsultarID((String) ComboPadre.getSelectedItem()));
-//                    }
-//                    if(!"".equals((String) ComboMadre.getSelectedItem())){
-//                        Animal.setMADRE(MA.ConsultarID((String) ComboMadre.getSelectedItem()));
-//                    }
-//                    Animal.setTIPO(Tipo.getText());
-//                    if(!NoPartos.getText().isEmpty()){
-//                        Animal.setNO_HIJOS(Integer.parseInt(NoPartos.getText()));
-//                    }
-//                    if(!Peso.getText().isEmpty()){
-//                        Animal.setPESO(Float.parseFloat(Peso.getText()));
-//                    }
-//
-//                    Animal.setRAZA(MR.ConsultarID((String) ComboRaza.getSelectedItem()));
-//                    Animal.setSEXO((String) ComboSexo.getSelectedItem());
-//                    Animal.setCATEGORIA(MC.ConsultarID((String) ComboCategoria.getSelectedItem()));
-//                    if(!PrecioCompra.getText().isEmpty()){
-//                        Animal.setPRECIO_COMPRA(Float.parseFloat(PrecioCompra.getText()));
-//                    }
-//                    if(!PrecioVenta.getText().isEmpty()){
-//                        Animal.setPRECIO_VENTA(Float.parseFloat(PrecioVenta.getText()));
-//                    }
-//
-//                    Animal.setUBICACION(Ubicacion.getText());
-//                    Animal.setDESCRIPCION(Descripcion.getText());
-//                    Animal.setESTADO((String) ComboEstado.getSelectedItem());
-//                    if(MA.IngresoAnimal(Animal)){
-//                        JOptionPane.showMessageDialog(null, "Ingresado correctamente!!!!");
-//                    }else{
-//                        JOptionPane.showMessageDialog(null, "Ocurrio un error al ingresar!!!!");
-//                    }
-//                }
-//            }
+
+        Ordeño O = new Ordeño();
+        O.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
  
     

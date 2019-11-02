@@ -25,6 +25,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -69,6 +70,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 40, 40));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 250, 40));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fertilizacion.png"))); // NOI18N
@@ -77,6 +84,11 @@ public class Principal extends javax.swing.JFrame {
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusPainted(false);
         jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/33.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 130, 150));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Captura de pantalla (29).png"))); // NOI18N
@@ -113,6 +125,11 @@ public class Principal extends javax.swing.JFrame {
         jButton5.setContentAreaFilled(false);
         jButton5.setFocusPainted(false);
         jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/31.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 130, 150));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/portapapeles.png"))); // NOI18N
@@ -121,6 +138,11 @@ public class Principal extends javax.swing.JFrame {
         jButton3.setContentAreaFilled(false);
         jButton3.setFocusPainted(false);
         jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/32.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 130, 150));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vaca.png"))); // NOI18N
@@ -129,6 +151,11 @@ public class Principal extends javax.swing.JFrame {
         jButton6.setContentAreaFilled(false);
         jButton6.setFocusPainted(false);
         jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/30_1.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 130, 150));
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
@@ -164,6 +191,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        Vacunacion V = new Vacunacion();
+        V.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -175,14 +205,47 @@ public class Principal extends javax.swing.JFrame {
         try {
             doc.crearReporte(x);
         } catch (DocumentException ex) {
-            Logger.getLogger(ResultadoBusqueada.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ResultadoBusqueada.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         doc.mostrarPDF(x);
         doc.mostrarReporte(x);   
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        Animal A = new Animal();
+        A.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Fertilidad F = new Fertilidad();
+        F.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        Ordeño O = new Ordeño();
+        O.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Carne C = new Carne();
+        C.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
