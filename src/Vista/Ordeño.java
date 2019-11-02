@@ -48,13 +48,12 @@ public class Ordeño extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 33)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ordeño");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(140, 10, 140, 50);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 140, 50));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
@@ -68,11 +67,9 @@ public class Ordeño extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(10, 10, 110, 40);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 40));
 
-        getContentPane().add(ComboMadres);
-        ComboMadres.setBounds(76, 75, 170, 30);
+        getContentPane().add(ComboMadres, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 75, 170, 30));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/30.png"))); // NOI18N
@@ -86,8 +83,7 @@ public class Ordeño extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(250, 70, 110, 40);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 110, 40));
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo-documento.png"))); // NOI18N
@@ -101,8 +97,7 @@ public class Ordeño extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(20, 150, 100, 40);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 100, 40));
 
         Editar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
@@ -116,8 +111,7 @@ public class Ordeño extends javax.swing.JFrame {
                 EditarActionPerformed(evt);
             }
         });
-        getContentPane().add(Editar);
-        Editar.setBounds(150, 150, 110, 40);
+        getContentPane().add(Editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 110, 40));
 
         Eliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-foto.png"))); // NOI18N
@@ -131,8 +125,7 @@ public class Ordeño extends javax.swing.JFrame {
                 EliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(Eliminar);
-        Eliminar.setBounds(300, 150, 110, 40);
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 110, 40));
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,12 +148,10 @@ public class Ordeño extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 210, 375, 275);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 375, 275));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(-10, 0, 570, 520);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 570, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

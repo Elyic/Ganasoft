@@ -65,52 +65,41 @@ public class EditarFertilidad extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("No. Registro Animal");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(63, 113, 113, 27);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 113, -1, 27));
 
         jLabel2.setText("Calidad: ");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(117, 163, 54, 27);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 163, 54, 27));
 
         txtCalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCalidadActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCalidad);
-        txtCalidad.setBounds(187, 163, 209, 22);
+        getContentPane().add(txtCalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 163, 209, -1));
 
         jLabel3.setText("Cantidad Producida: ");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(120, 213, 120, 27);
-        getContentPane().add(txtCantProducida);
-        txtCantProducida.setBounds(240, 213, 156, 22);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 213, 120, 27));
+        getContentPane().add(txtCantProducida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 213, 156, -1));
 
         jLabel4.setText("Fecha Revisión: ");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(126, 263, 113, 27);
-        getContentPane().add(txtFechaRev);
-        txtFechaRev.setBounds(226, 263, 170, 22);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 263, 113, 27));
+        getContentPane().add(txtFechaRev, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 263, 170, -1));
 
         jLabel5.setText("Observasiones:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(116, 323, 113, 27);
-        getContentPane().add(txtObservaciones);
-        txtObservaciones.setBounds(216, 323, 180, 22);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 323, 113, 27));
+        getContentPane().add(txtObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 323, 180, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 33)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("PRODUCCION");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(12, 23, 230, 47);
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 23, 230, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fertilizacion64.png"))); // NOI18N
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(332, 13, 64, 64);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 13, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar-documento-icono-7840-32.png"))); // NOI18N
@@ -123,8 +112,7 @@ public class EditarFertilidad extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(266, 383, 130, 40);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 383, 130, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
@@ -137,20 +125,17 @@ public class EditarFertilidad extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(16, 383, 130, 40);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 383, 130, 40));
 
         NoRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NoRegistroActionPerformed(evt);
             }
         });
-        getContentPane().add(NoRegistro);
-        NoRegistro.setBounds(185, 112, 216, 22);
+        getContentPane().add(NoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 112, 216, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(-9, -4, 500, 490);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-9, -4, 500, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

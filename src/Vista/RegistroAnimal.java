@@ -233,7 +233,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 130, 40));
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
         getContentPane().add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 90, 110));
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 750, 580));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 660, 580));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

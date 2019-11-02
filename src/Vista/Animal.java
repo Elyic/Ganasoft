@@ -57,13 +57,12 @@ public class Animal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 33)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Animales");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(200, 10, 150, 50);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 150, 50));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo-documento.png"))); // NOI18N
@@ -77,8 +76,7 @@ public class Animal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(40, 100, 110, 40);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 110, 40));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
@@ -92,8 +90,7 @@ public class Animal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(10, 10, 130, 40);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 40));
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
@@ -107,8 +104,7 @@ public class Animal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(210, 100, 110, 40);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 110, 40));
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-foto.png"))); // NOI18N
@@ -122,8 +118,7 @@ public class Animal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(390, 100, 120, 40);
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 120, 40));
 
         TablaAnimal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,12 +141,10 @@ public class Animal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(TablaAnimal);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(10, 210, 530, 152);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 530, 152));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(-9, -4, 570, 490);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-9, -4, 560, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

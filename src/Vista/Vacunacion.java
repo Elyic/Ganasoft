@@ -48,13 +48,12 @@ public class Vacunacion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 33)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Vacunación");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(120, 20, 220, 70);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 220, 70));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
@@ -68,8 +67,7 @@ public class Vacunacion extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(10, 20, 110, 32);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 110, -1));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo-documento.png"))); // NOI18N
@@ -83,8 +81,7 @@ public class Vacunacion extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(20, 140, 130, 40);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 130, 40));
 
         Editar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
@@ -98,8 +95,7 @@ public class Vacunacion extends javax.swing.JFrame {
                 EditarActionPerformed(evt);
             }
         });
-        getContentPane().add(Editar);
-        Editar.setBounds(170, 140, 100, 40);
+        getContentPane().add(Editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 100, 40));
 
         Eliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-foto.png"))); // NOI18N
@@ -113,8 +109,7 @@ public class Vacunacion extends javax.swing.JFrame {
                 EliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(Eliminar);
-        Eliminar.setBounds(290, 140, 130, 40);
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 130, 40));
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,11 +132,9 @@ public class Vacunacion extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 200, 375, 275);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 375, 275));
 
-        getContentPane().add(ComboAnimales);
-        ComboAnimales.setBounds(60, 90, 183, 30);
+        getContentPane().add(ComboAnimales, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 183, 30));
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/30.png"))); // NOI18N
@@ -155,12 +148,10 @@ public class Vacunacion extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(260, 90, 110, 40);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 110, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(-9, -4, 570, 530);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-9, -4, 450, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

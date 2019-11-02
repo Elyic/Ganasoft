@@ -48,7 +48,7 @@ public class Carne extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
@@ -62,8 +62,7 @@ public class Carne extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(20, 20, 100, 32);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, -1));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo-documento.png"))); // NOI18N
@@ -77,8 +76,7 @@ public class Carne extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(30, 150, 120, 40);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, 40));
 
         Editar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
@@ -92,8 +90,7 @@ public class Carne extends javax.swing.JFrame {
                 EditarActionPerformed(evt);
             }
         });
-        getContentPane().add(Editar);
-        Editar.setBounds(180, 150, 100, 40);
+        getContentPane().add(Editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 100, 40));
 
         Eliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-foto.png"))); // NOI18N
@@ -107,14 +104,12 @@ public class Carne extends javax.swing.JFrame {
                 EliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(Eliminar);
-        Eliminar.setBounds(330, 150, 120, 40);
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 120, 40));
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 33)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Carne");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(170, 10, 130, 40);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, 40));
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,12 +132,10 @@ public class Carne extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 240, 375, 275);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 375, 275));
 
         ComboAnimales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(ComboAnimales);
-        ComboAnimales.setBounds(70, 90, 190, 30);
+        getContentPane().add(ComboAnimales, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 190, 30));
 
         jButton5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/30.png"))); // NOI18N
@@ -156,12 +149,10 @@ public class Carne extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(270, 80, 110, 40);
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 110, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(-9, -4, 570, 570);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-9, -4, 570, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
