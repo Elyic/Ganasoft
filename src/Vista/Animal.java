@@ -63,7 +63,7 @@ public class Animal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Animales");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(210, 10, 150, 50);
+        jLabel1.setBounds(200, 10, 150, 50);
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo-documento.png"))); // NOI18N
