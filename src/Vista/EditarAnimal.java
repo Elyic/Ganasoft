@@ -100,6 +100,7 @@ public class EditarAnimal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         imagen = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -197,19 +198,21 @@ public class EditarAnimal extends javax.swing.JFrame {
                 FotoActionPerformed(evt);
             }
         });
-        getContentPane().add(Foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 130, -1));
+        getContentPane().add(Foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 150, -1));
 
         jLabel20.setBackground(new java.awt.Color(255, 255, 255));
         jLabel20.setFont(new java.awt.Font("Comic Sans MS", 1, 33)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("EDITAR ANIMAL");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, -1));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 300, -1));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar-documento-icono-7840-32.png"))); // NOI18N
         jButton1.setText("Guardar");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -218,10 +221,12 @@ public class EditarAnimal extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 130, 40));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
         jButton2.setText("Volver");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
+        jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -229,6 +234,9 @@ public class EditarAnimal extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 130, 40));
         getContentPane().add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 90, 110));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -20, 720, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -498,6 +506,7 @@ public class EditarAnimal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;

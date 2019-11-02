@@ -37,6 +37,7 @@ public class RegistroParto extends javax.swing.JFrame {
         txtFechaVacuna = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         txtObservaciones = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -56,6 +57,9 @@ public class RegistroParto extends javax.swing.JFrame {
         jLabel5.setText("Observasiones:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 113, 27));
         getContentPane().add(txtObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 187, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -98,6 +102,7 @@ public class RegistroParto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtEstado;

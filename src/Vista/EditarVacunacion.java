@@ -118,7 +118,7 @@ public class EditarVacunacion extends javax.swing.JFrame {
         getContentPane().add(NoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 220, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 450, 470));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 470, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

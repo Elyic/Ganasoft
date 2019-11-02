@@ -91,6 +91,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         imagen = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -193,6 +194,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, -1));
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/codigo-qr.png"))); // NOI18N
         jButton3.setText("Generar QR");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
@@ -205,6 +207,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 160, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar-documento-icono-7840-32.png"))); // NOI18N
         jButton1.setText("Guardar");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
@@ -217,6 +220,7 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 130, 40));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/espalda.png"))); // NOI18N
         jButton2.setText("Volver");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
@@ -230,6 +234,9 @@ public class RegistroAnimal extends javax.swing.JFrame {
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
         getContentPane().add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 90, 110));
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 750, 580));
+
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/azul.png"))); // NOI18N
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -456,6 +463,7 @@ if (seleccion == fileChooser.APPROVE_OPTION)
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
